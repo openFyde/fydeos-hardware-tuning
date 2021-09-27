@@ -16,14 +16,17 @@ list_sound_pci_info() {
 sound_show_menu() {
   list_sound_pci_info
   print_line "*"
+  local msgfilter="\"alsa"
   for slot in $(get_slots_by_pci_type "audio"); do
     for mod in $(get_device_kernel_modules $slot); do
+      msgfilter+="\|$mod"
       register_item_and_description "init_module_param_and_show $mod" \
         "Tuning kernel module: ($mod) params."
       register_block_or_unblock_item $mod
     done
   done
-  register_item_and_description 'sudo dmesg | grep -i \"alsa\|i915\|amdgpu\|nouveau\" |grep -i err' \
+  msgfilter+="\""
+  register_item_and_description "sudo dmesg | grep -i $msgfilter |grep -i err" \
     "Search kernel message for sound driver error"
 }
 
