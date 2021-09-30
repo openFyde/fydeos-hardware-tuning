@@ -44,7 +44,7 @@ force_modify_param() {
   if [ -z "$val" ]; then
     WarnMsg "Input empty string, Nothing changed."
 	elif [ ${val:0:1} == "-" ]; then
-		save_command "unset_module_parameter $_CURRENT_MODULE.$val" "Unset module:$_CURRENT_MODULE parameter:$val"
+		save_command "unset_module_parameter $_CURRENT_MODULE.${val:1}" "Unset module:$_CURRENT_MODULE parameter:${val:1}"
   else
     save_command "set_module_parameter $_CURRENT_MODULE.$val" "Set module:$_CURRENT_MODULE parameter:$val"
   fi

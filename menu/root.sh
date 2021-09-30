@@ -39,3 +39,7 @@ root_show_help() {
   echo "Basic menu for hardware tuning"
   WarnMsg "If you no idea about what you are doing, close this app immediately. Or it will damage your hardware. **Expert Only**"
 }
+
+root_console_exit() {
+  release_grub_mnt
+}

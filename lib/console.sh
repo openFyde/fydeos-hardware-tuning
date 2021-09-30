@@ -51,14 +51,39 @@ print_line() {
   printf "${chr}"'%.0s' $(eval "echo {1..$(tput cols)}")
 }
 
+apply_console_func() {
+  local funcname=$1
+  declare -fp ${_CONSOLE_STACK[-1]}_console_$funcname 2>/dev/null 1>/dev/null
+  if [ $? -eq 0 ]; then
+    ${_CONSOLE_STACK[-1]}_console_$funcname
+  fi
+}
+
+apply_console_out() {
+  apply_console_func "out"
+}
+
+apply_console_in() {
+  apply_console_func "in"
+}
+
+apply_console_exit() {
+  while [ ${#_CONSOLE_STACK[@]} -gt 0 ]; do
+    apply_console_func "exit"
+    unset _CONSOLE_STACK[-1]
+  done
+}
+
 go_back() {
   if [ ${#_CONSOLE_STACK[@]} -gt 1 ]; then
+    apply_console_out
     unset _CONSOLE_STACK[-1]
   fi
   show_menu
 }
 
 go_root() {
+  apply_console_out
   _CONSOLE_STACK=( ${_CONSOLE_STACK[0]} )
   show_menu
 }
@@ -74,7 +99,7 @@ show_path() {
 
 show_menu() {
   _NUMERICAL_HOTKEYS=() 
-  clear
+  $DEBUG_MODE || clear
   printf "\t\t$_WHITE$_APP_NAME$_NC\t\tVersion:$_GREEN${_APP_VERSION[0]}.${_APP_VERSION[1]}.${_APP_VERSION[2]}$_NC\n"
   print_line
   ${_CONSOLE_STACK[-1]}_show_menu 
@@ -87,7 +112,7 @@ show_help() {
 }
 
 exit_without_save() {
-  release_grub_mnt
+  apply_console_exit
   exit 0
 }
 
@@ -101,7 +126,8 @@ exit_with_save() {
       WarnMsg "$exe"
     fi
   done
-  release_grub_mnt
+  apply_console_out
+  apply_console_exit
   exit 0
 }
 
@@ -133,6 +159,7 @@ listen_user_input() {
   show_hotkeys
   while read -p "Input hotkey or index number of menu:" hotkey; do
     echo
+    hotkey=${hotkey:-zz}
     if [ -n "${_LETTER_HOTKEYS[$hotkey]}" ]; then
       ${_LETTER_HOTKEYS[$hotkey]}
     elif [ -n "${_NUMERICAL_HOTKEYS[$hotkey]}" ]; then
@@ -149,6 +176,7 @@ listen_user_input() {
 register_console() {
   local vpath=$1
   _CONSOLE_STACK+=( "$vpath" )
+  apply_console_in
   show_menu
 }
 

@@ -5,7 +5,10 @@
 # Author: Yang Tsao<yang@fydeos.io>
 
 source $(dirname $0)/lib/importlib.sh
-#DEBUG_MODE=true
+
+if [ "$production" == "debug" ]; then
+  DEBUG_MODE=true
+fi
 
 import_libs format_color array_util console
 

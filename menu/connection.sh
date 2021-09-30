@@ -30,7 +30,7 @@ scanning_network() {
 connect_ssid() {
   local ssid="$1"
   local psk
-  read -p "Input the password to connect with $_CURRENT_WLAN:" psk
+  read -p "Input the password to connect [$ssid] with $_CURRENT_WLAN:" psk
   connect_ssid_from_dev "$ssid" "$psk"
   wait_seconds 5
   show_menu
