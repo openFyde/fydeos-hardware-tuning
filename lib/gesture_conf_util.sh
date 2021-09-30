@@ -25,7 +25,7 @@ declare -Ag _GESTURE_TYPE_OPTIONS=(
 declare -g _CURRENT_GESTURE_DEVICE=""
 
 set_current_gesture_device() {
-  $_CURRENT_GESTURE_DEVICE="$1"
+  _CURRENT_GESTURE_DEVICE="$1"
 }
 
 init_gesture_config() {

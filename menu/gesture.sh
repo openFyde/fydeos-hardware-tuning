@@ -38,9 +38,9 @@ edit_gesture_option() {
 }
 
 edit_gesture_manually() {
-  local option value
+  local option
   read -p "Input the Option caption:" option
-  if [ -n "$option"]; then
+  if [ -n "$option" ]; then
     edit_gesture_option "$option"
   else
     WarnMsg "No caption input."
@@ -70,12 +70,12 @@ gesture_show_menu() {
     register_item_and_description "edit_gesture_option \"$key\"" \
       "Edit option: $key"
   done
-  register_item_and_description "edit_gesture_manually" \
-    "Add new option"
   if [ "$(input_device_type)" == "Touchpad" ]; then
     register_item_and_description "insert_tap_as_click" \
-      "Add some options to apply the feature: tap-as-click"
+      "Add some options to apply the feature: Tap-As-Click"
   fi 
+  register_item_and_description "edit_gesture_manually" \
+    "Add new option"
 }
 
 gesture_show_help() {
