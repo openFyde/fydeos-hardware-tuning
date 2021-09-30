@@ -53,6 +53,8 @@ force_modify_param() {
 module_param_show_menu() {
   local p1 param detail value
   local nomodule=true
+  local isblocked=false
+  is_blocked_in_system $_CURRENT_MODULE && isblocked=true
   printf "Module:[ ${_WHITE}$_CURRENT_MODULE${_NC} ]\n"
   while IFS=":" read -s p1 param detail; do
     param=$(echo $param | xargs)
@@ -60,12 +62,14 @@ module_param_show_menu() {
       break
     fi
     nomodule=false
-		printf	" ${_WHITE}$param${_NC}: $(sudo cat /sys/module/$_CURRENT_MODULE/parameters/$param)\n"
+		$isblocked || printf	" ${_WHITE}$param${_NC}:$(sudo cat /sys/module/$_CURRENT_MODULE/parameters/$param)\n"
     printf "$detail\n"
     register_item_and_description "modify_param_value $param" \
-			"Modify $param at system configuration"
-    register_item_and_description "test_param_value $param" \
-			"Reload kernel module with new $param but not changing system configuration" 
+			"Modify $param in system configuration"
+    if ! $isblocked ; then
+      register_item_and_description "test_param_value $param" \
+			  "Reload kernel module with new $param but not changing system configuration" 
+    fi
     print_line "."
   done <<< $(sudo modinfo $_CURRENT_MODULE 2>/dev/null|grep parm)
   if $nomodule; then

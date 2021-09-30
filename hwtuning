@@ -3,8 +3,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 # Author: Yang Tsao<yang@fydeos.io>
-
-source $(dirname $0)/lib/importlib.sh
+declare RealPath=$0
+if [ -h $0 ]; then
+  RealPath=$(dirname $0)/$(readlink $RealPath)
+fi
+source $(dirname $RealPath)/lib/importlib.sh
 
 if [ "$production" == "debug" ]; then
   DEBUG_MODE=true

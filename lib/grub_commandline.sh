@@ -97,6 +97,21 @@ set_blacklist() {
   set_param_to_module_params "$module_params" "$_RO_BLACKLIST=$blacklist"
 }
 
+is_module_blocked() {
+  local blacklist=$1
+  local name=$2
+  local find_name=false
+  local IFS=","
+  for module in $blacklist; do
+    if [ $name == $module ]; then
+      find_name=true
+      break
+    fi
+  done
+  IFS=""
+  $find_name
+}
+
 set_blacklist_name() {
   local blacklist=$1
   local name=$2
@@ -176,13 +191,5 @@ unset_module_parameter() {
 is_blocked_module() {
   local search_module="$1"
   local bl=$(get_blacklist "${CURRENT_MODULE_PARAMS}")
-  local found=false
-  local IFS=","
-  for module in $bl; do
-    if [ "$module" == "$search_module" ]; then
-      found=true
-      break
-    fi
-  done
-  $found
+  is_module_blocked $bl $search_module
 }

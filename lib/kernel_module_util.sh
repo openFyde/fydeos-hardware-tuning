@@ -43,3 +43,16 @@ register_block_or_unblock_item() {
       "Block kernel driver/module: ($mod)."
   fi
 }
+
+is_blocked_in_system() {
+  local module=$1
+  local module_params=$(cat /proc/cmdline)
+  local bl=$(get_param_from_module_params "$module_params" $_RO_BLACKLIST)
+  local blocked=false
+  bl=${bl#*=}
+  if is_module_blocked $bl $module; then
+    DbMsg "$module is blocked"
+    blocked=true
+  fi
+  $blocked
+}
