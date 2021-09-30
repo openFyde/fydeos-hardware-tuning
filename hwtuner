@@ -5,7 +5,7 @@
 # Author: Yang Tsao<yang@fydeos.io>
 declare RealPath=$0
 if [ -h $0 ]; then
-  RealPath=$(dirname $0)/$(readlink $RealPath)
+  RealPath=$(readlink $RealPath)
 fi
 source $(dirname $RealPath)/lib/importlib.sh
 
