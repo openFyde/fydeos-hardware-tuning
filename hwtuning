@@ -22,7 +22,7 @@ root_show_help() {
 }
 
 main() {
-  set_appname "FydeOS hardware tuning"
+  set_appname "FydeOS Hardware Tuning"
   set_appversion 0 0 1
   register_console root
 }
