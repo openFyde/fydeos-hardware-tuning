@@ -11,6 +11,9 @@ list_graphic_pci_info() {
   for slot in $(get_slots_by_pci_type "graphic"); do
     pci_device_info $slot
   done
+  for slot in $(get_slots_by_pci_type "display"); do
+    pci_device_info $slot
+  done
   WarnMsg "Suggestions from fydeos:"
   echo "Best compatiable devices:" ${_BEST_COMPATIABLE_GCARDS[@]}  
   echo "Basic compatiable devices:" ${_BASIC_COMPATIABLE_GCARDS[@]}

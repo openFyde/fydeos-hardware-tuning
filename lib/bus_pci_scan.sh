@@ -9,6 +9,7 @@ import_lib format_color array_util
 declare -Ag _PCI_DEVICES
 declare -r -Ag _CRITICAL_DEVICE_CLASS=(
   ["graphic"]="VGA compatible controller"
+  ["display"]="Display controller"
   ["usb"]="USB controller"
   ["sata"]="SATA controller"
   ["audio"]="Audio device"

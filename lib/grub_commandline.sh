@@ -149,9 +149,19 @@ unset_blacklist_name() {
 #----- context support ------
 init_grub_mnt() {
   [ -d $GRUB_MNT ] || mkdir $GRUB_MNT
-  [ -n "$(sudo mount | grep $GRUB_MNT)" ] || \
-    sudo mount $(ls $(rootdev -d){12,p12} 2>/dev/null) $GRUB_MNT
-  CURRENT_GRUB_FILE=$GRUB_MNT/efi/boot/grub.cfg
+  if [ -n "$(cat /proc/cmdline |grep fydeos_dualboot)" ]; then
+    local dualboot_part=$(sudo cgpt find -l FYDEOS-DUAL-BOOT)
+    dualboot_part=$(udevadm info -q path $dualboot_part)
+    dualboot_part=$(dirname $dualboot_part)
+    dualboot_part=$(basename $dualboot_part)
+    dualboot_part=$(sudo cgpt find -t efi /dev/$dualboot_part)
+    sudo mount $dualboot_part $GRUB_MNT
+    CURRENT_GRUB_FILE=$GRUB_MNT/efi/fydeos/grub.cfg
+  else
+    [ -n "$(sudo mount | grep $GRUB_MNT)" ] || \
+      sudo mount $(ls $(rootdev -d){12,p12} 2>/dev/null) $GRUB_MNT
+    CURRENT_GRUB_FILE=$GRUB_MNT/efi/boot/grub.cfg
+  fi
   CURRENT_MODULE_PARAMS="$(get_module_params)"
   DbMsg CURRENT_MODULE_PARAMS:$CURRENT_MODULE_PARAMS
 }
