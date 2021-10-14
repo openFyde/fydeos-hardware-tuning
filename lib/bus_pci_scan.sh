@@ -54,6 +54,14 @@ get_slots_by_pci_type() {
   echo ${_PCI_DEVICES["${_CRITICAL_DEVICE_CLASS[$type]}"]}
 }
 
+get_slots_by_pci_types() {
+  local slots=""
+  for type in $@; do
+    slots+="${_PCI_DEVICES["${_CRITICAL_DEVICE_CLASS[$type]}"]} "
+  done
+  echo $slots
+}
+
 device_driver_installed() {
   local device_slot=$1
   [ -n "$(get_device_driver_name $device_slot)" ]  

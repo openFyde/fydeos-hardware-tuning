@@ -8,10 +8,7 @@ import_libs bus_pci_scan graphic_device kernel_module_util module_param
 
 list_graphic_pci_info() {
   echo "System graphic device list:"
-  for slot in $(get_slots_by_pci_type "graphic"); do
-    pci_device_info $slot
-  done
-  for slot in $(get_slots_by_pci_type "display"); do
+  for slot in $(get_slots_by_pci_types "graphic" "display"); do
     pci_device_info $slot
   done
   WarnMsg "Suggestions from fydeos:"
@@ -22,8 +19,8 @@ list_graphic_pci_info() {
 graphic_show_menu() {
   list_graphic_pci_info
   print_line "*"
-  local IFS=','
-  for slot in $(get_slots_by_pci_type "graphic"); do
+  local IFS=' ,'
+  for slot in $(get_slots_by_pci_types "graphic" "display"); do
     DbMsg "slot:$slot"
     for mod in $(get_device_kernel_modules $slot); do
       DbMsg "mod:$mod"
