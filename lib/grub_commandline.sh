@@ -154,7 +154,7 @@ init_grub_mnt() {
     dualboot_part=$(udevadm info -q path $dualboot_part)
     dualboot_part=$(dirname $dualboot_part)
     dualboot_part=$(basename $dualboot_part)
-    dualboot_part=$(sudo cgpt find -t efi /dev/$dualboot_part)
+    dualboot_part=$(sudo cgpt find -t efi /dev/$dualboot_part | head -n1)
     sudo mount $dualboot_part $GRUB_MNT
     CURRENT_GRUB_FILE=$GRUB_MNT/efi/fydeos/grub.cfg
   else
