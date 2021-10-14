@@ -103,7 +103,7 @@ is_module_blocked() {
   local find_name=false
   local IFS=","
   for module in $blacklist; do
-    if [ $name == $module ]; then
+    if [ "$name" == "$module" ]; then
       find_name=true
       break
     fi
@@ -119,7 +119,7 @@ set_blacklist_name() {
   local result=""
   local IFS=","
   for module in $blacklist; do
-    if [ $name == $module ]; then
+    if [ "$name" == "$module" ]; then
       find_name=true
     fi
     result+="$module,"
@@ -138,7 +138,7 @@ unset_blacklist_name() {
   local IFS=","
   local result=""
   for module in $blacklist; do
-    if [ $name != $module ]; then
+    if [ "$name" != "$module" ]; then
       result+="$module,"
     fi
   done
