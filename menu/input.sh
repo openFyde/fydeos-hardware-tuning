@@ -37,9 +37,15 @@ set_pci_nocrs() {
   save_command "set_module_parameter pci=nocrs" "Set PCI nocrs to fix some ACPI memory conflict which prevent intel-lpss from loading"
 }
 
+unset_pci_nocrs() {
+  save_command "unset_module_parameter pci=nocrs" "Unset PCI nocrs to recovery system original config"
+}
+
 input_show_menu() {
   local dev_type mod dev_name edev
   local -A mods
+  list_serial_devices
+  print_line "."
   list_input_devices
   print_line "*"
   for dev in $(list_input_devices_path); do
@@ -61,8 +67,13 @@ input_show_menu() {
   done
   register_item_and_description "test_input_device" \
       "Test deviceis with evtest"
-  register_item_and_description "set_pci_nocrs" \
-      "Add flag nocrs to fix memory conflict"
+  if [ -n "$(cat /proc//proc/cmdline | grep 'pci=nocrs')" ];then
+    register_item_and_description "unset_pci_nocrs" \
+        "Remove flag nocrs"
+  else
+    register_item_and_description "set_pci_nocrs" \
+        "Add flag nocrs to fix memory conflict"
+  fi
 }
 
 input_show_help() {
