@@ -6,6 +6,17 @@
 
 import_libs input_util module_param gesture
 
+list_serial_devices() {
+  local mods
+  for slot in $(get_slots_by_pci_type "serial"); do
+    pci_device_info $slot
+    mods=$(get_device_kernel_modules $slot)
+    if [ -z "${mods}" ]; then
+      WarnMsg "Your serial driver might be faild, try ${_YELLOW}Add flag nocrs${_NC} to fix it"
+    fi
+  done  
+}
+
 list_input_devices() {
   local dev_type dev edev
   echo "Input devices list:"
@@ -20,6 +31,10 @@ test_input_device() {
   local dev=$1
   evtest
   show_menu
+}
+
+set_pci_nocrs() {
+  save_command "set_module_parameter pci=nocrs" "Set PCI nocrs to fix some ACPI memory conflict which prevent intel-lpss from loading"
 }
 
 input_show_menu() {
@@ -46,6 +61,8 @@ input_show_menu() {
   done
   register_item_and_description "test_input_device" \
       "Test deviceis with evtest"
+  register_item_and_description "set_pci_nocrs" \
+      "Add flag nocrs to fix memory conflict"
 }
 
 input_show_help() {
