@@ -8,6 +8,7 @@ import_libs input_util module_param gesture
 
 list_serial_devices() {
   local mods
+  echo "PCI serial devices:"
   for slot in $(get_slots_by_pci_type "serial"); do
     pci_device_info $slot
     mods=$(get_device_kernel_modules $slot)
@@ -67,7 +68,7 @@ input_show_menu() {
   done
   register_item_and_description "test_input_device" \
       "Test deviceis with evtest"
-  if [ -n "$(cat /proc//proc/cmdline | grep 'pci=nocrs')" ];then
+  if [ -n "$(cat /proc/cmdline | grep 'pci=nocrs')" ];then
     register_item_and_description "unset_pci_nocrs" \
         "Remove flag nocrs"
   else
