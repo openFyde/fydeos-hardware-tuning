@@ -37,7 +37,7 @@ root_show_menu() {
 
 root_show_help() {
   echo "Basic menu for hardware tuning"
-  WarnMsg "If you no idea about what you are doing, close this app immediately. Or it will damage your hardware. **Expert Only**"
+  WarnMsg "If you have no idea of what you are doing, close this app immediately. Or it may damage your hardware. **Expert Only**"
 }
 
 root_console_exit() {

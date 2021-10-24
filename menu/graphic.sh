@@ -34,7 +34,7 @@ graphic_show_menu() {
 }
 
 graphic_show_help() {
-  echo "FydeOS can only running on one graphic device at the moment. If there are two or more graphic devices in system,\
-     Fydoos will pick one randomly. You need block the unused devices to make system stable."
-  WarnMsg "If you blocked the wrong device, you may get black screen."
+  echo "FydeOS can only run on one graphic device at the moment. If there are two or more graphic devices in your system,\
+     FydeOS may pick one randomly. You need to block the unused device or the system will not run stably."
+  WarnMsg "If you block the wrong device, you may get a black screen."
 }

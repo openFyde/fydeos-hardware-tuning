@@ -166,7 +166,7 @@ listen_user_input() {
       DbMsg "${_NUMERICAL_HOTKEYS[$hotkey]}"
       eval "${_NUMERICAL_HOTKEYS[$hotkey]}"
     else
-      WarnMsg "Hotkey/Index:$hotkey isn't exist"
+      WarnMsg "Hotkey/Index:$hotkey doesn't exist"
     fi
     print_line "="
     show_hotkeys

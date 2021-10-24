@@ -27,7 +27,7 @@ modify_param_value() {
 test_param_value() {
   local param="$1"
   local val
-  read -p "Input $param value and press ENTER, no value will reload module with default parameter:" val
+  read -p "Input $param value and press ENTER, an empty value will reload module with default parameter:" val
   val=$(echo $val|xargs)
   sudo rmmod $_CURRENT_MODULE
   if [ -z "$val" ]; then

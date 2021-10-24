@@ -31,7 +31,7 @@ sound_show_menu() {
 }
 
 sound_show_help() {
-  echo "If one sound device was adapted by two module drivers like hda_intel_* and soc_intel_*.\
-     System may pick the wrong one to load. You need block the in-used module to load the other one."
-  WarnMsg "If you blocked the wrong device, your PC will be muted."
+  echo "If one sound device is supported by two drivers such as hda_intel_* and soc_intel_*.\
+     System may pick the wrong one to load. You may try to block the in-use module to load the other one."
+  WarnMsg "If you block the wrong driver, your PC will be muted."
 }

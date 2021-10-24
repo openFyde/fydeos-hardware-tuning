@@ -26,7 +26,7 @@ set_current_wlan() {
      _CURRENT_WLAN=$(list_current_wireless_devices | head -n1)
   fi
   if [ -z "$_CURRENT_WLAN" ]; then
-    ErrMsg "No wireless interfece found like wlan0 etc."
+    ErrMsg "No wireless interfece was found (e.g. wlan0 etc.)"
   fi
 }
 
