@@ -19,20 +19,20 @@ gesture_console_in() {
 
 gesture_console_out() {
   local answer
-  read -n 1 -p "Do you want to save your gesture configration to system? Press [y] for yes, others to skip:" answer
+  read -n 1 -p "Would you like to save your gesture configration to the system? Press [y] for yes, others to skip:" answer
   if [ "$answer" == "y" ];then
     echo ""
     if [ $(save_gesture_config) -eq 0 ]; then
       OkMsg "Reboot or restart UI to reload the gesture configrations."
     else
-      WarnMsg "Nothing is changed."
+      WarnMsg "Nothing has changed."
     fi
   fi
 }
 
 edit_gesture_option() {
   local option="$1"
-  read -p "Please Input Option \"$option\" Value, no value will remove the option from configration:" value
+  read -p "Please input the value for the option \"$option\", an empty value will remove the option from configration:" value
   edit_option_of_gesture "$option" "$value"
   show_menu
 }

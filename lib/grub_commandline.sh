@@ -170,7 +170,7 @@ release_grub_mnt() {
   local params=$(get_module_params $CURRENT_GRUB_FILE)
   if [ "${CURRENT_MODULE_PARAMS}" != "$params" ]; then
     save_module_params "$CURRENT_GRUB_FILE" "$CURRENT_MODULE_PARAMS"
-    WarnMsg "The kernel module configration is changed, reboot to apply the change."
+    WarnMsg "The kernel module configration has been changed, reboot to apply the change."
   fi
   sudo umount $GRUB_MNT 
 }

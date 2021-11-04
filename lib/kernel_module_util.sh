@@ -23,14 +23,14 @@ list_kernel_module_params() {
 
 block_module_command() {
   local mod=$1
-  save_command "block_module $mod" "Block driver:$mod to prevent the driver to be used by system."
-  WarnMsg "The blocking command was saved temporarily, you can revoke it by remove latest saved command."
+  save_command "block_module $mod" "Block driver \"$mod\" to prevent it being used by the system."
+  WarnMsg "The block command was saved temporarily, you can revoke it by removing the last saved command."
 }
 
 unblock_module_command() {
   local mod=$1
-  save_command "unblock_module $mod" "Unblock driver:$mod to prevent the driver to be used by system."
-  WarnMsg "The unblocking command was saved temporarily, you can revoke it by remove latest saved command."
+  save_command "unblock_module $mod" "Unblock driver \"$mod\" to prevent the driver to be used by system."
+  WarnMsg "The unblock command was saved temporarily, you can revoke it by removing the last saved command."
 }
 
 register_block_or_unblock_item() {

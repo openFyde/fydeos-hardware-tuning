@@ -13,7 +13,7 @@ list_serial_devices() {
     pci_device_info $slot
     mods=$(get_device_kernel_modules $slot)
     if [ -z "${mods}" ]; then
-      WarnMsg "Your serial driver might be faild, try ${_YELLOW}Add flag nocrs${_NC} to fix it"
+      WarnMsg "Your serial driver might have failed, try ${_YELLOW}Add flag nocrs${_NC} to fix it"
     fi
   done  
 }
