@@ -12,20 +12,20 @@ if [ ${#_LIB_IMPORTED} -ne 0 ]; then
 fi
 
 ErrMsg() {
-  printf "\033[0;31mERROR:\033[0m $@\n" 
+  printf "\033[0;31mERROR:\033[0m $@\n"  >&2
 }
 
 WarnMsg() {
-  printf "\033[1;33mWARNING:\033[0m $@\n"
+  printf "\033[1;33mWARNING:\033[0m $@\n" >&2
 }
 
 OkMsg() {
-  printf "\033[0;32mOK:\033[0m $@\n"  
+  printf "\033[0;32mOK:\033[0m $@\n" >&2
 }
 
 DbMsg() {
  $DEBUG_MODE && caller
- $DEBUG_MODE && printf "\033[1;33mDEBUG:\033[0m $@\n" 
+ $DEBUG_MODE && printf "\033[1;33mDEBUG:\033[0m $@\n" >&2
 }
 
 get_current_dir() {

@@ -12,6 +12,9 @@ source $(dirname $RealPath)/lib/importlib.sh
 if [ "$production" == "debug" ]; then
   DEBUG_MODE=true
 fi
+if [[ "$1" = "--info" ]]; then
+  COLOR="false"
+fi
 
 import_libs format_color array_util console
 
@@ -24,6 +27,10 @@ root_show_help() {
 main() {
   set_appname "FydeOS Hardware Tuner"
   set_appversion 0 0 1
+  if [[ "$1" = "--info" ]]; then
+    show_dmi_info
+    exit 0
+  fi
   register_console root
 }
 

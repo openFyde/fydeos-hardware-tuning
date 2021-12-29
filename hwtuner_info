@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/share/hwtuner-script/hwtuner --info 2>/dev/null
