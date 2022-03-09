@@ -17,6 +17,7 @@ declare -r -Ag _CRITICAL_DEVICE_CLASS=(
   ["nvme"]="Non-Volatile memory controller"
   ["wireless"]="Network controller"
   ["serial"]="Serial bus controller [0c80]"
+  ["media"]="Multimedia controller"
 )
 
 declare -rg _KERNEL_DRIVER_IN_USE="Kernel driver in use: "

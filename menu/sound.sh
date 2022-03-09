@@ -8,7 +8,7 @@ import_libs bus_pci_scan kernel_module_util module_param
 
 list_sound_pci_info() {
   echo "System sound device list:"
-  for slot in $(get_slots_by_pci_type "audio"); do
+  for slot in $(get_slots_by_pci_types "audio" "media"); do
     pci_device_info $slot
   done
 }
@@ -17,7 +17,7 @@ sound_show_menu() {
   list_sound_pci_info
   print_line "*"
   local msgfilter="\"alsa"
-  for slot in $(get_slots_by_pci_type "audio"); do
+  for slot in $(get_slots_by_pci_types "audio" "media"); do
     for mod in $(get_device_kernel_modules $slot); do
       msgfilter+="\|$mod"
       register_item_and_description "init_module_param_and_show $mod" \
