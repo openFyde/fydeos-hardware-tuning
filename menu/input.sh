@@ -67,7 +67,7 @@ input_show_menu() {
 		  "Tuning kernel module: ($mod) params for devices:${mods[$mod]}"
   done
   register_item_and_description "test_input_device" \
-      "Test deviceis with evtest"
+      "Test devices with evtest"
   if [ -n "$(cat /proc/cmdline | grep 'pci=nocrs')" ];then
     register_item_and_description "unset_pci_nocrs" \
         "Remove flag nocrs"
