@@ -36,8 +36,12 @@ connect_ssid() {
   show_menu
 }
 
-connection_show_menu() {
+connection_list_info() {
   connection_info
+}
+
+connection_show_menu() {
+  connection_list_info
   print_line "*"
   register_item_and_description "scanning_network" "Scanning network with $_CURRENT_WLAN"
   for ssid in $(scan_result_ssid_from_device); do

@@ -27,9 +27,13 @@ show_connection_panel() {
   register_console connection
 }
 
-wireless_show_menu() {
+wireless_list_info() {
   list_wireless_pci_info
   list_wlan_info
+}
+
+wireless_show_menu() {
+  wireless_list_info
   print_line "*"
   local msgfilter="\"wireless"
   for slot in $(get_slots_by_pci_type "wireless"); do

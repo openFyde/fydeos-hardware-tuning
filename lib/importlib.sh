@@ -66,7 +66,7 @@ register_lib() {
 import_lib() {
   local libname=$1
   if is_lib_imported $libname; then
-    WarnMsg "lib:$libname is already loaded"
+    #WarnMsg "lib:$libname is already loaded"
     return
   fi
   local libsource=$(find_lib_source $1)
@@ -76,7 +76,7 @@ import_lib() {
   fi
   source $libsource
   register_lib $libname
-  OkMsg "import $libname"
+  #OkMsg "import $libname"
 }
 
 import_libs() {
