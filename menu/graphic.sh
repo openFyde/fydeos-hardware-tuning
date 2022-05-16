@@ -16,8 +16,12 @@ list_graphic_pci_info() {
   echo "Basic compatiable devices:" ${_BASIC_COMPATIABLE_GCARDS[@]}
 }
 
-graphic_show_menu() {
+graphic_list_info() {
   list_graphic_pci_info
+}
+
+graphic_show_menu() {
+  graphic_list_info
   print_line "*"
   local IFS=' ,'
   for slot in $(get_slots_by_pci_types "graphic" "display"); do

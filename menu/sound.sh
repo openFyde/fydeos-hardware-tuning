@@ -13,8 +13,12 @@ list_sound_pci_info() {
   done
 }
 
-sound_show_menu() {
+sound_list_info() {
   list_sound_pci_info
+}
+
+sound_show_menu() {
+  sound_list_info
   print_line "*"
   local msgfilter="\"alsa"
   for slot in $(get_slots_by_pci_types "audio" "media"); do

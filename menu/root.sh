@@ -35,6 +35,31 @@ root_show_menu() {
       "Edit kernel params manually"
 }
 
+display_header() {
+  printf "${_WHITE}[\t${1}\t]${_NC}\n"
+}
+
+root_display_all() {
+  show_dmi_info
+  init_pci_bus_devices
+
+  display_header "WIRELESS INFOMATION"
+  wireless_list_info
+  echo ""
+
+  display_header "SOUND INFOMATION"
+  sound_list_info
+  echo ""
+
+  display_header "Gesture infomation"
+  gesture_list_info
+  echo ""
+
+  display_header "GRAPHIC INFOMATION"
+  graphic_list_info
+  echo ""
+}
+
 root_show_help() {
   echo "Basic menu for hardware tuning"
   WarnMsg "If you have no idea of what you are doing, close this app immediately. Or it may damage your hardware. **Expert Only**"

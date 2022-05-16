@@ -42,12 +42,18 @@ unset_pci_nocrs() {
   save_command "unset_module_parameter pci=nocrs" "Unset PCI nocrs to recovery system original config"
 }
 
-input_show_menu() {
-  local dev_type mod dev_name edev
-  local -A mods
+input_list_info() {
   list_serial_devices
   print_line "."
   list_input_devices
+}
+
+input_show_menu() {
+  local dev_type mod dev_name edev
+  local -A mods
+
+  input_list_info
+
   print_line "*"
   for dev in $(list_input_devices_path); do
     dev_type=$(input_device_type $dev)

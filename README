@@ -1,0 +1,20 @@
+fydeos-hardware-tuning
+======================
+
+
+Hardware tuner for fydeos.
+It could adjust wireless, graphic card, sound device and gesture configuration.
+
+Usage:
+1. Interactive mode:
+   run ./hwtuner and press corresponding key mentioned by menu.
+
+2. Output all information:
+   run ./hwtuner --info then it will output ALL hardware information.
+
+
+Supported device types:
+1) Sound device
+2) Graphic device
+3) Gesture device
+4) Wireless device
