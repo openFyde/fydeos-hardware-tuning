@@ -6,6 +6,7 @@
 
 import_libs dmi_util bus_pci_scan
 import_libs graphic sound wireless input kernel_module
+import_libs misc
 
 show_kernel_params_console() {
   local module
@@ -42,21 +43,27 @@ display_header() {
 root_display_all() {
   show_dmi_info
   init_pci_bus_devices
+  echo ""
 
-  display_header "WIRELESS INFOMATION"
+  display_header "WIRELESS INFORMATION"
   wireless_list_info
   echo ""
 
-  display_header "SOUND INFOMATION"
+  display_header "SOUND INFORMATION"
   sound_list_info
   echo ""
 
-  display_header "Gesture infomation"
+  display_header "GESTURE INFORMATION"
   gesture_list_info
   echo ""
 
-  display_header "GRAPHIC INFOMATION"
+  display_header "GRAPHIC INFORMATION"
   graphic_list_info
+  echo ""
+
+  display_header "MISC INFORMATION"
+  echo ""
+  list_misc_info
   echo ""
 }
 
