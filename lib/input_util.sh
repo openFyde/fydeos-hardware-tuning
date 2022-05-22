@@ -29,8 +29,14 @@ input_device_name() {
 
 input_device_event_dev() {
   local dev_path=${1:-$_CURRENT_INPUT_DEV}
-  local evname=$(basename $(ls -d $dev_path/event*))
-  echo /dev/input/$evname
+  local event_path=$(ls -d $dev_path/event* 2>/dev/null)
+
+  if [ -z "$event_path" ]; then
+    echo ""
+  else
+    local evname=$(basename $event_path)
+    echo /dev/input/$evname
+  fi
 }
 
 input_device_evtest() {

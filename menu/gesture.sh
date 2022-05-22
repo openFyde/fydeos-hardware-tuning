@@ -49,10 +49,18 @@ edit_gesture_manually() {
 }
 
 gesture_list_info() {
-   printf "${_WHITE}Current Device:${_NC}$(input_device_event_dev) ${_WHITE}Driver:${_NC}$(input_device_name)\n"
-   printf "${_BG_GREEN}Gesture Options:${_NC}\n"
-   print_line '.'
-   get_gesture_config_from_tmp
+  local event_dev="$(input_device_event_dev)"
+
+  [ -z "$event_dev" ] && return
+
+  local dev_name="$(input_device_name)"
+
+  [ -z "$dev_name" ] && return
+
+  printf "${_WHITE}Current Device:${_NC}${event_dev} ${_WHITE}Driver:${_NC}${dev_name}\n"
+  printf "${_BG_GREEN}Gesture Options:${_NC}\n"
+  print_line '.'
+  get_gesture_config_from_tmp
 }
 
 gesture_show_menu() {
