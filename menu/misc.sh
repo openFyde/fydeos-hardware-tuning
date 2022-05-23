@@ -27,9 +27,9 @@ ip_addrs()
 
 list_misc_info()
 {
-#    display_header "HID DEVICES"
-#    ls_hid
-#    echo ""
+    display_header "HID DEVICES"
+    ls_hid
+    echo ""
 
     display_header "PCI DEVICES"
     ls_pci
