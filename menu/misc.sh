@@ -10,6 +10,11 @@ ls_usb()
     sudo lsusb
 }
 
+ls_hid()
+{
+    sudo dmesg | grep -i "hid"
+}
+
 show_dmesg()
 {
     sudo dmesg --level=err,warn
@@ -22,6 +27,10 @@ ip_addrs()
 
 list_misc_info()
 {
+#    display_header "HID DEVICES"
+#    ls_hid
+#    echo ""
+
     display_header "PCI DEVICES"
     ls_pci
     echo ""
