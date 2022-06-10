@@ -30,7 +30,6 @@ main() {
   set_appname "FydeOS Hardware Tuner"
   set_appversion 0 0 1
   if [[ "$1" = "--info" ]]; then
-    show_dmi_info
     root_display_all
     exit 0
   fi
