@@ -4,7 +4,7 @@
 # found in the LICENSE file.
 # Author: Yang Tsao<yang@fydeos.io>
 
-import_libs input_util module_param gesture
+import_libs input_util module_param gesture alt_touchpad_cmt
 
 list_serial_devices() {
   local mods
@@ -55,6 +55,8 @@ input_show_menu() {
   input_list_info
 
   print_line "*"
+  register_item_and_description "init_alt_touchpad_cmt_and_show" \
+    "Select alternative touchpad configuration"
   for dev in $(list_input_devices_path); do
     dev_type=$(input_device_type $dev)
     mod=$(input_device_driver_name $dev)
