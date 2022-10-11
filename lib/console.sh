@@ -100,7 +100,7 @@ show_path() {
 show_menu() {
   _NUMERICAL_HOTKEYS=() 
   $DEBUG_MODE || clear
-  printf "\t\t$_WHITE$_APP_NAME$_NC\t\tVersion:$_GREEN${_APP_VERSION[0]}.${_APP_VERSION[1]}.${_APP_VERSION[2]}$_NC\n"
+  printf "\t\t$_WHITE$_APP_NAME$_NC\t\tVersion:$_GREEN${_APP_VERSION[0]}.${_APP_VERSION[1]}.${_APP_VERSION[2]}.${_APP_VERSION[3]}$_NC\n"
   print_line
   ${_CONSOLE_STACK[-1]}_show_menu 
   show_path

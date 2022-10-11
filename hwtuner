@@ -26,9 +26,19 @@ root_show_help() {
   echo "main help"
 }
 
+version_suffix() {
+  local f=""
+  f="$(dirname "$RealPath")/.version_suffix"
+  if [[ -f "$f" ]]; then
+    cut -c1-8 "$f" 2> /dev/null
+  else
+    echo "N"
+  fi
+}
+
 main() {
   set_appname "FydeOS Hardware Tuner"
-  set_appversion 0 0 1
+  set_appversion 0 0 1 "$(version_suffix)"
   if [[ "$1" = "--info" ]]; then
     root_display_all
     exit 0
