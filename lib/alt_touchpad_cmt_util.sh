@@ -7,6 +7,17 @@
 
 declare -rg _ALT_TOUCHPAD_CMT_CONF="/mnt/stateful_partition/unencrypted/gesture/55-alt-touchpad-cmt.conf"
 
+init_alt_touchpad_cmt_conf() {
+  local dir=""
+  dir="$(dirname "${_ALT_TOUCHPAD_CMT_CONF}")"
+  if [[ ! -d "$dir" ]]; then
+    sudo mkdir -p "${dir}"
+  fi
+  if [[ ! -f "${_ALT_TOUCHPAD_CMT_CONF}" ]]; then
+    sudo touch "${_ALT_TOUCHPAD_CMT_CONF}"
+  fi
+}
+
 disable_alt_touchpad_cmt_config() {
   cat /dev/null > "$_ALT_TOUCHPAD_CMT_CONF"
 }

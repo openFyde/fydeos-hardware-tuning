@@ -11,6 +11,10 @@ init_alt_touchpad_cmt_and_show() {
   register_console alt_touchpad_cmt 
 }
 
+alt_touchpad_cmt_console_in() {
+  init_alt_touchpad_cmt_conf
+}
+
 use_alt_touchpad_config() {
   local option="$1"
   if [ "$option" -eq 0 ]; then
