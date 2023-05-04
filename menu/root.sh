@@ -32,6 +32,10 @@ root_show_menu() {
       "Diagnose wireless hardware and driver tuning"
   register_item_and_description "register_console input" \
       "Diagnose input devices and driver tuning"
+  if misc_menu_supported; then
+    register_item_and_description "register_console misc" \
+        "Misc devices and driver tuning"
+  fi
   register_item_and_description "show_kernel_params_console" \
       "Edit kernel params manually"
 }

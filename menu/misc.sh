@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+import_libs suspend_mode
+
 ls_pci()
 {
     sudo lspci -nn
@@ -46,4 +48,14 @@ list_misc_info()
     display_header "IP ADDRESSES"
     ip_addrs
     echo ""
+}
+
+
+misc_show_menu() {
+  register_item_and_description "init_suspend_mode_and_show" \
+    "Switch suspend mode"
+}
+
+misc_menu_supported() {
+  is_setting_suspend_mode_support
 }
