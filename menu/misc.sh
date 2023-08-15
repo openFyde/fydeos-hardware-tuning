@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 import_libs suspend_mode
+import_libs update_refind
 
 ls_pci()
 {
@@ -54,6 +55,10 @@ list_misc_info()
 misc_show_menu() {
   register_item_and_description "init_suspend_mode_and_show" \
     "Switch suspend mode"
+  if grep -q fydeos_dualboot /proc/cmdline; then
+    register_item_and_description "init_update_refind_and_show" \
+      "Update rEFInd provided by FydeOS"
+  fi
 }
 
 misc_menu_supported() {
