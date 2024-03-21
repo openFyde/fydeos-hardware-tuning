@@ -33,7 +33,7 @@ set_current_wlan() {
 wpa_cli_run() {
   local cmd="$1"
   local dev=${2:-$_CURRENT_WLAN}
-  sudo runuser -u wpa -- wpa_cli -i $dev $cmd
+  sudo -u wpa -- wpa_cli -i $dev $cmd
 }
 
 get_wireless_device_module() {
